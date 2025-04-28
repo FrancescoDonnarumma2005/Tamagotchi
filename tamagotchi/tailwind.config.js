@@ -1,0 +1,1 @@
+//questo file serve a far funzionare l'estensione di tailwind per avere il testo suggerito

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobby</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body class="bg-slate-200 bg-bottom z-0 bg-cover bg-fixed bg-no-repeat " style="background-image: url('./src/background.png');">
+<div id="center" class="flex justify-center">
+<img src="src/TAMAGOTCHI.png" class="flex justify-center w-[500px]" >
+</div>
+<div id="center" class="flex justify-center sm:items-center h-screen pt-10 mb-10">
+<div id="partite" class="relative flex flex-col sm:flex-row" >
+<div id="1" class=" bg-teal-100 rounded-2xl shadow-2xl shadow-neutral-950 outline outline-black outline-2  border-2 h-[300px] mb-10 sm:mr-10 hover:border-gray-400 "> 
+<p class="flex justify-center mt-2 font-extrabold">PARTITA 1</p>
+<div class="flex justify-center mt-20"> 
+    <div class="grid grid-cols-1 w-72">
+    <input type="button" class="rounded-xl bg-indigo-400 p-2 m-2 font-extrabold hover:bg-indigo-500" value="CARICA PARTITA" onclick="Carica(this)">
+    <input type="button" class="rounded-xl bg-indigo-400 p-2 m-2 font-extrabold hover:bg-indigo-500" value="NUOVA PARTITA" onclick="nuovaPartita(this)">
+    </div>
+    </div>
+</div>
+<div id="2" class=" bg-teal-100 rounded-2xl  shadow-2xl  shadow-neutral-950 outline outline-black outline-2  border-2 h-[300px] mb-10 sm:mr-10 hover:border-gray-400"> 
+<p class="flex justify-center mt-2 font-extrabold">PARTITA 2</p>
+    <div class="flex justify-center mt-20"> 
+    <div class="grid grid-cols-1 w-72">
+    <input type="button" class="rounded-xl bg-indigo-400 p-2 m-2 font-extrabold hover:bg-indigo-500" value="CARICA PARTITA" onclick="Carica(this)">
+    <input type="button" class="rounded-xl bg-indigo-400 p-2 m-2 font-extrabold hover:bg-indigo-500" value="NUOVA PARTITA" onclick="nuovaPartita(this)">
+    </div>
+    </div>
+</div>
+<div id="3" class=" bg-teal-100 rounded-2xl shadow-2xl  shadow-neutral-950 outline outline-black outline-2  border-2 h-[300px] mb-10 sm:mr-10 hover:border-gray-400"> 
+<p class="flex justify-center mt-2 font-extrabold">PARTITA 3</p>     
+<div class="flex justify-center mt-20"> 
+    <div class="grid grid-cols-1 w-72">
+    <input type="button" class="rounded-xl bg-indigo-400 p-2 m-2 font-extrabold hover:bg-indigo-500" value="CARICA PARTITA" onclick="Carica(this)">
+    <input type="button" class="rounded-xl bg-indigo-400 p-2 m-2 font-extrabold hover:bg-indigo-500" value="NUOVA PARTITA" onclick="nuovaPartita(this)">
+    </div>
+    </div>
+</div>
+</div>
+<div id="POPUP" class="absolute" style="display:none;">
+<div id="alert" class="flex flex-col rounded-3xl border-b-2 outline outline-black bg-gray-400 h-auto">
+<span class="text-center font-extrabold">SCEGLI IL TUO ANIMALETTO</span>
+<div id="animaletti" class="flex flex-row h-[200px] overflow-x-auto w-[300px] sm:w-[500px]" >
+
+
+
+<img src="./src/pipistrello_idle.png" id="1" class="h-[100px] w-1/3 sm:h-auto border-4 border-red-500 rounded-3xl" alt="cane" onclick="animalsOnClick(this)">
+
+
+
+<img src="./src/volpe_idle.png" id="2" class="h-[100px] w-1/3 sm:h-auto" alt="cane" onclick="animalsOnClick(this)">
+
+
+<img src="./src/foca_idle.png" id="3" class="h-[100px] w-1/3 sm:h-auto" alt="cane" onclick="animalsOnClick(this)">
+
+
+
+
+
+
+
+</div>
+<label class="font-extrabold mt-5 text-center" >DAI UN NOME AL TUO ANIMALETTO:</label>
+<input id="nomeAnimaletto" type="text" class="w-[80%] self-center" required>
+
+<input type="button" class="rounded-xl bg-indigo-400 p-2 m-2 font-extrabold hover:bg-indigo-500 mt-5" value="GIOCA" onclick="onGiocaClick()">
+<input type="button" class="rounded-xl bg-indigo-400 p-2 m-2 font-extrabold hover:bg-indigo-500" value="ANNULLA" onclick="document.getElementById('POPUP').style.display='none';">
+</div>
+</div>
+</div>
+</body>
+
+
+
+<script>
+var tipoAnimaletto=1;
+var idAnimaletto;
+var nameChoiceElement=document.getElementById("nomeAnimaletto");
+nameChoiceElement.addEventListener("change",onNameChange);
+var nomeAnimaletto;
+function nuovaPartita(element){
+
+var POPUP=document.getElementById("POPUP");
+POPUP.style.display="flex";
+
+var parentDiv1= element.parentNode;
+var parentDiv2= parentDiv1.parentNode;
+var parentDiv3= parentDiv2.parentNode;
+idAnimaletto=parentDiv3.id;
+console.log("idAnimaletto: "+ idAnimaletto);
+
+
+}
+function animalsOnClick(element){
+const classActive=`h-[100px] w-1/3 sm:h-auto border-4 border-red-500 rounded-3xl`
+const classInactive=`h-[100px] w-1/3 sm:h-auto`;
+const animalettiDiv=document.getElementById("animaletti");
+const animaletti=animalettiDiv.getElementsByTagName("img");
+tipoAnimaletto=element.id;
+console.log(tipoAnimaletto);
+for(let i=0;i<animaletti.length;i++){
+    if(animaletti[i].id==element.id){
+        animaletti[i].className=classActive;
+    }else{
+        animaletti[i].className=classInactive;
+    }
+    }
+
+}
+function onNameChange(){
+
+    nomeAnimaletto=nameChoiceElement.value;
+    console.log(nomeAnimaletto);
+}
+function onGiocaClick(){
+    var form=new FormData();
+form.append("idAnimaletto",idAnimaletto);
+form.append("tipoAnimaletto",tipoAnimaletto);
+form.append ("nomeAnimaletto", nomeAnimaletto);
+fetch("CreateLoadGame.php",{
+    method:"POST",
+    body:form
+}).then(response =>response.json()).then(data =>{
+    console.log("prima fetch"+data.message);
+    if(data.status && !data.error){
+        window.location.href="tamagotchi.php";
+    } else if(!data.error && !data.status){
+        if(confirm(data.message)){
+            form.append("userChoice","overwrite");
+            fetch("CreateLoadGame.php",{
+        method:"POST",
+        body:form
+    }).then(response =>response.json()).then(data =>{
+        console.log("seconda fetch"+data.message+ data.status+data.error);
+        if(data.status && !data.error){
+            window.location.href="tamagotchi.php";
+        }else{
+            alert(data.message);
+        }
+        
+    });
+    }
+    }
+   
+})
+}
+function Carica(element){
+var parentDiv1= element.parentNode;
+var parentDiv2= parentDiv1.parentNode;
+var parentDiv3= parentDiv2.parentNode;
+idAnimaletto=parentDiv3.id;
+console.log("idAnimaletto: "+ idAnimaletto);
+fetch(`CreateLoadGame.php?idAnimaletto=${idAnimaletto}`,{
+    method:"GET",
+}).then(response =>response.json()).then(data =>{
+    console.log(data);
+    if(data.status){
+        window.location.href="tamagotchi.php";
+    }
+    alert(data.message);
+    
+})
+}
+
+</script>
+</html>
